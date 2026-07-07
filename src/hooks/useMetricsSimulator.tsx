@@ -77,7 +77,8 @@ export const MetricsProvider: React.FC<{ children: React.ReactNode }> = ({ child
       return;
     }
 
-    const newSocket = io('http://localhost:5000/live', {
+    const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const newSocket = io(`${backendUrl}/live`, {
       auth: { token },
       transports: ['websocket', 'polling'] // Add polling as fallback
     });
@@ -159,7 +160,8 @@ export const MetricsProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const startStressTest = async () => {
     try {
-      await axios.post('http://localhost:5000/api/stress-test/start');
+      const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      await axios.post(`${backendUrl}/api/stress-test/start`);
       setIsStressTesting(true);
       addLog('Stress', 'Started stress test', 'warning');
     } catch (err) {
@@ -169,7 +171,8 @@ export const MetricsProvider: React.FC<{ children: React.ReactNode }> = ({ child
 
   const stopStressTest = async () => {
     try {
-      await axios.post('http://localhost:5000/api/stress-test/stop');
+      const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      await axios.post(`${backendUrl}/api/stress-test/stop`);
       setIsStressTesting(false);
       addLog('Stress', 'Stopped stress test', 'info');
     } catch (err) {

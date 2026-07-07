@@ -15,12 +15,13 @@ export const Login: React.FC = () => {
     setError('');
     
     try {
+      const backendUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
       if (isRegister) {
-        await axios.post('http://localhost:5000/api/auth/register', { email, password });
+        await axios.post(`${backendUrl}/api/auth/register`, { email, password });
         setIsRegister(false);
-        setError('Registration successful. Please login.');
+        setError('Registration successful! Please sign in.');
       } else {
-        const res = await axios.post('http://localhost:5000/api/auth/login', { email, password });
+        const res = await axios.post(`${backendUrl}/api/auth/login`, { email, password });
         login(res.data.accessToken);
       }
     } catch (err: any) {
