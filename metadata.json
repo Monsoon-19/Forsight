@@ -1,0 +1,6 @@
+{
+  "name": "Foresight",
+  "description": "An AI-powered predictive infrastructure monitoring dashboard modeled after Grafana, Datadog, and Linear.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
