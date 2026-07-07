@@ -37,7 +37,7 @@ const calculateLinearRegression = (data) => {
     ssRes += Math.pow(y - yPred, 2);
   }
 
-  const rSquared = ssTot === 0 ? 1 : 1 - (ssRes / ssTot);
+  const rSquared = ssTot === 0 ? 0 : 1 - (ssRes / ssTot);
 
   return { slope, intercept, rSquared };
 };
